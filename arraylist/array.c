@@ -13,17 +13,57 @@ List deletePos(List L, int position);
 int locate(List L, int data);
 List insertSorted(List L, int data);
 void display(List L);
-
+void displayMenu();
 
 int main(){
     List L;
     L = initialize(L);
-    
-    L = insertPos(L, 10, 0);
-    L = insertPos(L, 20, 1);
-    L = insertPos(L, 30, 1);
+    int choice, data, position;
 
-    display(L);
+    while(1){
+        displayMenu();
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch(choice){
+            case 1:
+                printf("Enter data: ");
+                scanf("%d", &data);
+                printf("Enter position to insert: ");
+                scanf("%d", &position);
+                L = insertPos(L, data, position);
+                break;
+            case 2:
+                printf("Enter position to delete: ");
+                scanf("%d", &position);
+                L = deletePos(L, position);
+                break;
+            case 3:
+                printf("Enter data to locate: ");
+                scanf("%d", &data);
+                position = locate(L, data);
+                if(position != -1){
+                    printf("Element found at position %d\n", position);        
+                }else{
+                    printf("Element not found!\n");
+                }
+                break;
+            case 4:
+                printf("Enter data to insert in sorted order: ");
+                scanf("%d", &data);
+                L = insertSorted(L, data);
+                break;
+            case 5:
+                display(L);
+                break;
+            case 6:
+                exit(0);
+                break;
+            default:
+                printf("Invalid choice! Please try again. \n");
+                break;
+        }
+    }
     return 0;
 }
 
@@ -43,7 +83,7 @@ List insertPos(List L, int data, int position){
     }
     
     if(L.count >= MAX){
-        printf("Array is full!");
+        printf("Array is full!\n");
         return L;
     }
     
@@ -57,7 +97,7 @@ List insertPos(List L, int data, int position){
 
 List deletePos(List L, int position){
     if(position < 0 || position >= L.count){
-        printf("Invalid Position");
+        printf("Invalid Position\n");
         return L;
     }
     for(int i = position; i < L.count - 1; i++){
@@ -91,11 +131,19 @@ List insertSorted(List L, int data){
 }
 
 void display(List L){
-    printf("List of elems: ");
+    printf("List of elems: \n");
     for(int i = 0; i < L.count; i++){
         printf("%d ", L.elem[i]);
     }
     printf("\n");
 }
 
+void displayMenu(){
+    printf("1. Insert at Position\n");
+    printf("2. Delete at Position\n");
+    printf("3. Locate Element\n");
+    printf("4. Insert in Sorted Order\n");
+    printf("5. Display Elements\n");
+    printf("6. Exit\n");
+}
 
