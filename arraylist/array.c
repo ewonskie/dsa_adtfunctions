@@ -60,7 +60,7 @@ int main(){
                 exit(0);
                 break;
             default:
-                printf("Invalid choice! Please try again. \n");
+                printf("Invalid choice! Please try again. \n\n");
                 break;
         }
     }
@@ -78,12 +78,12 @@ List initialize(List L){
 List insertPos(List L, int data, int position){
     
     if(position < 0 || position >= MAX){
-        printf("Invalid Position!\n");
+        printf("Invalid Position!\n\n");
         return L;
     }
     
     if(L.count >= MAX){
-        printf("Array is full!\n");
+        printf("Array is full!\n\n");
         return L;
     }
     
@@ -92,6 +92,7 @@ List insertPos(List L, int data, int position){
     }
     L.elem[position] = data;
     L.count++;
+    printf("Element inserted successfully!\n\n");
     return L;
 }
 
@@ -104,6 +105,7 @@ List deletePos(List L, int position){
         L.elem[i] = L.elem[i + 1];
     }
     L.count--;
+    printf("Element deleted successfully!\n\n");
     return L;
 }
 
@@ -113,6 +115,7 @@ int locate(List L, int data){
             return i;
         }
     }
+    
     return -1;
 }
 
@@ -127,6 +130,7 @@ List insertSorted(List L, int data){
     
     L.elem[i + 1] = data;
     L.count++;
+    printf("Element inserted successfully in sorted order!\n\n");
     return L;
 }
 
